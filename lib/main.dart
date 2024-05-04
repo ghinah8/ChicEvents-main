@@ -1,6 +1,11 @@
+import 'package:chic_events/firebase_options.dart';
+import 'package:chic_events/screens/signin_page.dart';
+import 'package:chic_events/screens/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
+  static String id = 'MyBottomNavigationBar';
   @override
   _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
@@ -118,8 +123,28 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: MyBottomNavigationBar(),
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(Checevents());
+}
+
+class Checevents extends StatelessWidget {
+  const Checevents({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        signinpag.id: (context) => signinpag(),
+        signupag.id: (context) => signupag(),
+        MyBottomNavigationBar.id: (context) => MyBottomNavigationBar(),
+      },
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'signinpag',
+      home: signinpag(),
+    );
+  }
 }
