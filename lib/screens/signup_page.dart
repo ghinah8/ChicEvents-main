@@ -25,10 +25,6 @@ class _signupagState extends State<signupag> {
 
   String? password;
 
-  String? lastname;
-
-  String? firstname;
-
   bool isloading = false;
 
   GlobalKey<FormState> formkey = GlobalKey();
