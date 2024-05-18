@@ -147,8 +147,11 @@ class _signinpagState extends State<signinpag> {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 130,
+                ),
                 Image.asset(
-                  'assets/images/pngimg.com - party_PNG45.png',
+                  'assets/images/pngimg.com - party_PNbG45.png',
                 ),
               ],
             ),

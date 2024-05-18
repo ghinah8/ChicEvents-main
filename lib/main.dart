@@ -1,4 +1,5 @@
 import 'package:chic_events/firebase_options.dart';
+import 'package:chic_events/screens/onbourding_screen.dart';
 import 'package:chic_events/screens/signin_page.dart';
 import 'package:chic_events/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -131,6 +132,17 @@ void main() async {
   runApp(Checevents());
 }
 
+class GetStart1 extends StatelessWidget {
+  const GetStart1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color(0xff4b173d),
+    );
+  }
+}
+
 class Checevents extends StatelessWidget {
   const Checevents({Key? key}) : super(key: key);
 
@@ -144,7 +156,7 @@ class Checevents extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'signinpag',
-      home: signinpag(),
+      home: onboarding_screen(),
     );
   }
 }

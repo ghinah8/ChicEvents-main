@@ -24,7 +24,8 @@ class _signupagState extends State<signupag> {
   String? email;
 
   String? password;
-
+  String? firstname;
+  String? lastname;
   bool isloading = false;
 
   GlobalKey<FormState> formkey = GlobalKey();
@@ -39,7 +40,7 @@ class _signupagState extends State<signupag> {
           key: formkey,
           child: ListView(children: [
             const SizedBox(
-              height: 100,
+              height: 60,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +53,7 @@ class _signupagState extends State<signupag> {
                       color: Color(0xff4b173d)),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 //i cann but a row widget
                 const Padding(
@@ -96,9 +97,28 @@ class _signupagState extends State<signupag> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  child: textfield(
+                    onchange: (data) {
+                      firstname = data;
+                    },
+                    lab: 'User Name ',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: textfield(
+                    onchange: (data) {
+                      lastname = data;
+                    },
+                    lab: 'ID Number',
+                  ),
+                ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 80),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70),
                     child: button(
@@ -148,8 +168,11 @@ class _signupagState extends State<signupag> {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 90,
+                ),
                 Image.asset(
-                  'assets/images/pngimg.com - party_PNG45.png',
+                  'assets/images/pngimg.com - party_PNbG45.png',
                 ),
               ],
             ),
