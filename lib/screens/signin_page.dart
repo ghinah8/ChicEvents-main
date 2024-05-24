@@ -1,3 +1,4 @@
+import 'package:chic_events/const.dart';
 import 'package:chic_events/helper/showsnackbar.dart';
 import 'package:chic_events/main.dart';
 import 'package:chic_events/widgets/button.dart';
@@ -43,7 +44,7 @@ class _signinpagState extends State<signinpag> {
                   style: TextStyle(
                     fontSize: 32,
                     fontFamily: 'pacifico',
-                    color: Color(0xff4b173d),
+                    color: color2,
                   ),
                 ),
                 const SizedBox(
@@ -58,7 +59,7 @@ class _signinpagState extends State<signinpag> {
                       'Sign In',
                       style: TextStyle(
                         fontSize: 24,
-                        color: Color(0xff4b173d),
+                        color: color2,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -133,7 +134,7 @@ class _signinpagState extends State<signinpag> {
                     const Text(
                       'don\'t have an account?',
                       style: TextStyle(
-                        color: Color(0xff4b173d),
+                        color: color3,
                       ),
                     ),
                     GestureDetector(
@@ -142,7 +143,7 @@ class _signinpagState extends State<signinpag> {
                       },
                       child: const Text(' Sing up',
                           style: TextStyle(
-                            color: Color(0xff4b173d),
+                            color: color3,
                           )),
                     )
                   ],

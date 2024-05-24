@@ -1,3 +1,6 @@
+// ignore_for_file: camel_case_types
+
+import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 import 'package:chic_events/screens/signin_page.dart';
 
@@ -22,7 +25,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
         image: 'assets/images/imadges.jpeg',
         title: 'Chic Events',
         subtitle: 'Organize with your own style',
-        background: 'assets/images/Vector2.png',
+        background: 'assets/images/Vector3.png',
         image2:
             'assets/images/pngtree-tour-guide-group-traveler-vacation-png-image_6063386.png'),
     onboardingData(
@@ -30,7 +33,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
             'assets/images/pngtree-big-isolated-employee-working-in-office-interior-workplace-flat-vector-illustration-png-image_4367687.png',
         title: 'Chic Events',
         subtitle: 'Pay with a click from your phone',
-        background: 'assets/images/Vector3.png',
+        background: 'assets/images/Vector1.png',
         image2:
             'assets/images/pngtree-woman-lying-in-credit-card-png-image_5510931.jpg'),
   ];
@@ -64,7 +67,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
                             data[index].image,
                           ),
                           const SizedBox(
-                            height: 0,
+                            height: 10,
                           ),
                           Image.asset(
                             data[index].image2,
@@ -92,60 +95,87 @@ class _onboarding_screenState extends State<onboarding_screen> {
                           fontSize: 22,
                         ),
                       ),
-                      Row(
-                        children: [
-                          containerWidget(
-                            isSelected: index == 0,
-                          ),
-                          const SizedBox(width: 5),
-                          containerWidget(
-                            isSelected: index == 1,
-                          ),
-                          const SizedBox(width: 5),
-                          containerWidget(
-                            isSelected: index == 2,
-                          ),
-                          const SizedBox(width: 200),
-                          index == data.length - 1
-                              ? ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    foregroundColor: Colors.purple,
-                                    elevation: 0,
-                                    fixedSize: const Size(130, 70),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
+                      Row(children: [
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: color2,
+                              elevation: 0,
+                              fixedSize: const Size(100, 70),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                signinpag.id,
+                              );
+                            },
+                            child: const Text(
+                              'SKIP',
+                              style: TextStyle(
+                                color: color4,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        containerWidget(
+                          isSelected: index == 0,
+                        ),
+                        const SizedBox(width: 5),
+                        containerWidget(
+                          isSelected: index == 1,
+                        ),
+                        const SizedBox(width: 5),
+                        containerWidget(
+                          isSelected: index == 2,
+                        ),
+                        const SizedBox(
+                          width: 80,
+                        ),
+                        index == data.length - 1
+                            ? ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: color2,
+                                  elevation: 0,
+                                  fixedSize: const Size(100, 70),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, signinpag.id);
-                                  },
-                                  child: const Text(
-                                    'Get Start',
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ))
-                              : ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    foregroundColor: Colors.purple,
-                                    elevation: 0,
-                                    fixedSize: const Size(60, 60),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
+                                ),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, signinpag.id);
+                                },
+                                child: const Text(
+                                  'Get Start',
+                                  style: TextStyle(
+                                    color: color4,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  onPressed: () {
-                                    pageController.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.ease);
-                                  },
-                                  child: const Icon(Icons.arrow_forward)),
-                        ],
-                      ),
+                                ))
+                            : ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: color4,
+                                  elevation: 0,
+                                  fixedSize: const Size(60, 60),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  pageController.nextPage(
+                                      duration: const Duration(seconds: 1),
+                                      curve: Curves.ease);
+                                },
+                                child: const Icon(Icons.arrow_forward)),
+                      ]),
                     ],
                   ),
                 )
@@ -157,7 +187,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
 }
 
 class containerWidget extends StatelessWidget {
-  containerWidget({
+  const containerWidget({
     super.key,
     required this.isSelected,
   });

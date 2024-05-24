@@ -1,3 +1,4 @@
+import 'package:chic_events/const.dart';
 import 'package:chic_events/main.dart';
 import 'package:chic_events/widgets/button.dart';
 import 'package:chic_events/widgets/textfield.dart';
@@ -40,7 +41,7 @@ class _signupagState extends State<signupag> {
           key: formkey,
           child: ListView(children: [
             const SizedBox(
-              height: 60,
+              height: 100,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,12 +49,10 @@ class _signupagState extends State<signupag> {
                 const Text(
                   'Chic Events',
                   style: TextStyle(
-                      fontSize: 32,
-                      fontFamily: 'pacifico',
-                      color: Color(0xff4b173d)),
+                      fontSize: 32, fontFamily: 'pacifico', color: color2),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 50,
                 ),
                 //i cann but a row widget
                 const Padding(
@@ -64,7 +63,7 @@ class _signupagState extends State<signupag> {
                       'Sign UP',
                       style: TextStyle(
                         fontSize: 24,
-                        color: Color(0xff4b173d),
+                        color: color2,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -107,15 +106,6 @@ class _signupagState extends State<signupag> {
                     lab: 'User Name ',
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: textfield(
-                    onchange: (data) {
-                      lastname = data;
-                    },
-                    lab: 'ID Number',
-                  ),
-                ),
 
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -144,7 +134,7 @@ class _signupagState extends State<signupag> {
                             setState(() {});
                           }
                         },
-                        name: 'Sgin Up'),
+                        name: 'Sign Up'),
                   ),
                 ),
                 Row(
@@ -152,7 +142,7 @@ class _signupagState extends State<signupag> {
                   children: [
                     const Text(
                       'Already have an account:',
-                      style: TextStyle(color: Color(0xff4b173d)),
+                      style: TextStyle(color: color3),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -163,13 +153,13 @@ class _signupagState extends State<signupag> {
                       },
                       child: const Text(' Sign in',
                           style: TextStyle(
-                            color: Color(0xff4b173d),
+                            color: color3,
                           )),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 90,
+                  height: 92,
                 ),
                 Image.asset(
                   'assets/images/pngimg.com - party_PNbG45.png',

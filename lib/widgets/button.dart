@@ -1,3 +1,4 @@
+import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -13,7 +14,7 @@ class button extends StatelessWidget {
         width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
-          color: Color(0xff4b173d),
+          color: color2,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(

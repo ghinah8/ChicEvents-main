@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -22,25 +23,25 @@ class textfield extends StatelessWidget {
       decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-            color: Color(0xff4b173d),
+            color: color2,
           )),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-            color: Color(0xff4b173d),
+            color: color2,
           )),
           label: Text(
             lab!,
             style: const TextStyle(
-              color: Color(0xff4b173d),
+              color: color2,
             ),
           ),
           border: const OutlineInputBorder(
               borderSide: BorderSide(
-            color: Color(0xff4b173d),
+            color: color2,
           )),
           hintText: hint,
           hintStyle: const TextStyle(
-            color: Color(0xff4b173d),
+            color: color2,
           )),
     );
   }
