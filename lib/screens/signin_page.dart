@@ -103,8 +103,7 @@ class _signinpagState extends State<signinpag> {
                             setState(() {});
                             try {
                               await signinuser();
-                              Navigator.pushNamed(
-                                  context, MyBottomNavigationBar.id,
+                              Navigator.pushNamed(context, HomePage.id,
                                   arguments: email);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'user-not-found') {

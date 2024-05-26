@@ -118,8 +118,7 @@ class _signupagState extends State<signupag> {
                             setState(() {});
                             try {
                               await sginupuser();
-                              Navigator.pushNamed(
-                                  context, MyBottomNavigationBar.id,
+                              Navigator.pushNamed(context, HomePage.id,
                                   arguments: email);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'weak-password') {

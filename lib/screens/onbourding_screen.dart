@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:chic_events/screens/signin_page.dart';
 
 class onboarding_screen extends StatefulWidget {
-  onboarding_screen({super.key});
+  const onboarding_screen({super.key});
 
   @override
   State<onboarding_screen> createState() => _onboarding_screenState();
@@ -115,7 +115,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
                             child: const Text(
                               'SKIP',
                               style: TextStyle(
-                                color: color4,
+                                color: color2,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -154,7 +154,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
                                 child: const Text(
                                   'Get Start',
                                   style: TextStyle(
-                                    color: color4,
+                                    color: color2,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -162,7 +162,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
                             : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
-                                  foregroundColor: color4,
+                                  foregroundColor: color2,
                                   elevation: 0,
                                   fixedSize: const Size(60, 60),
                                   shape: RoundedRectangleBorder(

@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors
 
 import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class textfield extends StatelessWidget {
   textfield(
-      {this.onchange, this.hint, required this.lab, this.obscuretext = false});
+      {this.onchange, this.hint, @required this.lab, this.obscuretext = false});
   String? hint;
   String? lab;
   Function(String)? onchange;
@@ -41,7 +41,7 @@ class textfield extends StatelessWidget {
           )),
           hintText: hint,
           hintStyle: const TextStyle(
-            color: color2,
+            color: color3,
           )),
     );
   }

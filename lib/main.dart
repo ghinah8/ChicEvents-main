@@ -1,52 +1,120 @@
+import 'package:chic_events/const.dart';
 import 'package:chic_events/firebase_options.dart';
 import 'package:chic_events/screens/onbourding_screen.dart';
+import 'package:chic_events/screens/profile.dart';
 import 'package:chic_events/screens/signin_page.dart';
 import 'package:chic_events/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class MyBottomNavigationBar extends StatefulWidget {
-  static String id = 'MyBottomNavigationBar';
+class HomePage extends StatefulWidget {
+  static String id = 'homepage';
   @override
-  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _currentIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  List<Widget> _pages = [
+    HomePage(),
+    FavoritesScreen(),
+    CartScreen(),
+    Myprofile(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My App'),
+        title: Text('Home'),
+        backgroundColor: color3,
       ),
-      body: Center(
-        child: _buildPage(_currentIndex),
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Positioned.fill(
+              child: Image.asset(
+                'assets/images/134_floral copy.jpg', // Replace with the actual image URL
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 16.0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'List of Pictures',
+                    style: TextStyle(
+                      color: color1,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (context, index) => ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: color3,
+                        child: Icon(Icons.image),
+                      ),
+                      title: Text('Image ${index + 1}'),
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, 'assets/images/134_floral copy.jpg');
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    width: double.infinity,
+                    height: 50.0,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, 'assets/images/134_floral copy.jpg');
+                      },
+                      backgroundColor: color3,
+                      child: Text(
+                        'Create Your Event',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
+            icon: Icon(Icons.looks),
+            label: 'Tools',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
@@ -57,42 +125,11 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             label: 'Profile',
           ),
         ],
+        selectedItemColor: color2,
+        unselectedItemColor: color4,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
       ),
-    );
-  }
-
-  Widget _buildPage(int index) {
-    switch (index) {
-      case 0:
-        return HomeScreen();
-      case 1:
-        return SearchScreen();
-      case 2:
-        return FavoritesScreen();
-      case 3:
-        return CartScreen();
-      case 4:
-        return ProfileScreen();
-      default:
-        return Container();
-    }
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home Screen'),
-    );
-  }
-}
-
-class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Search Screen'),
     );
   }
 }
@@ -111,15 +148,6 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text('Cart Screen'),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profile Screen'),
     );
   }
 }
@@ -152,11 +180,14 @@ class Checevents extends StatelessWidget {
       routes: {
         signinpag.id: (context) => signinpag(),
         signupag.id: (context) => signupag(),
-        MyBottomNavigationBar.id: (context) => MyBottomNavigationBar(),
+        EditProfile.id1: (context) => EditProfile(),
+        support.id3: (context) => support(),
+        Payment.id2: (context) => Payment(),
+        HomePage.id: (context) => HomePage(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'signinpag',
-      home: onboarding_screen(),
+      home: HomePage(),
     );
   }
 }
