@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Myprofile extends StatefulWidget {
   const Myprofile({super.key});
-
+  static String id = 'myprofile';
   @override
   State<Myprofile> createState() => _MyprofileState();
 }

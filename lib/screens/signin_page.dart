@@ -1,6 +1,7 @@
 import 'package:chic_events/const.dart';
 import 'package:chic_events/helper/showsnackbar.dart';
 import 'package:chic_events/main.dart';
+import 'package:chic_events/screens/home.dart';
 import 'package:chic_events/widgets/button.dart';
 import 'package:chic_events/widgets/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
