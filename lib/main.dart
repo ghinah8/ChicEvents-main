@@ -1,6 +1,7 @@
 import 'package:chic_events/const.dart';
 import 'package:chic_events/firebase_options.dart';
 import 'package:chic_events/screens/home.dart';
+import 'package:chic_events/screens/navbar.dart';
 import 'package:chic_events/screens/onbourding_screen.dart';
 import 'package:chic_events/screens/one.dart';
 import 'package:chic_events/screens/profile.dart';
@@ -47,7 +48,7 @@ class Checevents extends StatelessWidget {
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'signinpag',
-      home: HomePage(),
+      home: navbar(),
     );
   }
 }

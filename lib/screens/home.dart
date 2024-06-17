@@ -18,97 +18,59 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-int currentpage = 0;
-NavigationDestinationLabelBehavior labelBehavior =
-    NavigationDestinationLabelBehavior.alwaysShow;
-
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  NavigationDestinationLabelBehavior labelBehavior =
+      NavigationDestinationLabelBehavior.alwaysShow;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (value) {
-            setState(() {
-              currentpage = value;
-            });
-          },
-          indicatorColor: color3,
-          selectedIndex: currentpage,
-          destinations: [
-            NavigationDestination(
-                icon: IconButton(
-                  icon: Icon(Icons.home),
-                  onPressed: () {
-                    Navigator.pushNamed(context, HomePage.id);
-                  },
-                ),
-                label: 'Home'),
-            NavigationDestination(
-                icon: IconButton(
-                  icon: Icon(Icons.hotel_class_outlined),
-                  onPressed: () {
-                    Navigator.pushNamed(context, one.id);
-                  },
-                ),
-                label: 'vendors'),
-            NavigationDestination(
-                icon: IconButton(
-                  icon: Icon(Icons.person_2_outlined),
-                  onPressed: () {
-                    Navigator.pushNamed(context, Myprofile.id);
-                  },
-                ),
-                label: 'Profile'),
-          ],
-        ),
         body: Stack(
-          children: [
-            Image.asset('assets/images/134_floral copy.jpg'),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 249),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Categories',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(children: [
-                    help(
-                        image: 'assets/images/Beach_Wedding-min.png',
-                        title: 'Decoration'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    help(
-                        image:
-                            'assets/images/photo_2024-06-09_23-24-08 (2).jpg',
-                        title: 'Catering'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    help(
-                        image:
-                            'assets/images/photography-camera-learning-feature.jpg',
-                        title: 'Photography')
-                  ]),
-                  const SizedBox(
-                    height: 310,
-                  ),
-                  button(
-                    name: 'Create Event',
-                    ontap: () {
-                      Navigator.pushNamed(context, one.id);
-                    },
-                  )
-                ],
+      children: [
+        Image.asset('assets/images/134_floral copy.jpg'),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 249),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Categories',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-            ),
-          ],
-        ));
+              const SizedBox(
+                height: 16,
+              ),
+              Row(children: [
+                help(
+                    image: 'assets/images/Beach_Wedding-min.png',
+                    title: 'Decoration'),
+                const SizedBox(
+                  width: 20,
+                ),
+                help(
+                    image: 'assets/images/photo_2024-06-09_23-24-08 (2).jpg',
+                    title: 'Catering'),
+                const SizedBox(
+                  width: 20,
+                ),
+                help(
+                    image:
+                        'assets/images/photography-camera-learning-feature.jpg',
+                    title: 'Photography')
+              ]),
+              const SizedBox(
+                height: 310,
+              ),
+              button(
+                name: 'Create Event',
+                ontap: () {
+                  Navigator.pushNamed(context, one.id);
+                },
+              )
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }
 
