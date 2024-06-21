@@ -3,6 +3,7 @@ import 'package:chic_events/screens/home.dart';
 import 'package:chic_events/screens/one.dart';
 import 'package:chic_events/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class navbar extends StatefulWidget {
   const navbar({super.key});
@@ -34,6 +35,11 @@ class _navbarState extends State<navbar> {
             selectedIcon: Icon(Icons.star),
             icon: Icon(Icons.star_outline),
             label: 'Vendors',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.person),
