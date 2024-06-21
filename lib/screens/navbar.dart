@@ -24,7 +24,7 @@ class _navbarState extends State<navbar> {
         },
         indicatorColor: color3,
         selectedIndex: currentpage,
-        destinations: [
+        destinations: const [
           NavigationDestination(
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
@@ -42,7 +42,7 @@ class _navbarState extends State<navbar> {
           ),
         ],
       ),
-      body: <Widget>[HomePage(), one(), Myprofile()][currentpage],
+      body: <Widget>[HomePage(), const one(), const Myprofile()][currentpage],
     );
   }
 }

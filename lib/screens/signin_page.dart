@@ -1,6 +1,7 @@
+// ignore_for_file: camel_case_types, use_super_parameters, use_build_context_synchronously
+
 import 'package:chic_events/const.dart';
 import 'package:chic_events/helper/showsnackbar.dart';
-import 'package:chic_events/main.dart';
 import 'package:chic_events/screens/home.dart';
 import 'package:chic_events/widgets/button.dart';
 import 'package:chic_events/widgets/textfield.dart';
@@ -53,7 +54,7 @@ class _signinpagState extends State<signinpag> {
                 ),
                 //i cann but a row widget instead of align
                 const Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 12),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -148,7 +149,7 @@ class _signinpagState extends State<signinpag> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 130,
                 ),
                 Image.asset(

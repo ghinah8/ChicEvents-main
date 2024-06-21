@@ -1,3 +1,6 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
+import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
 class one extends StatefulWidget {
@@ -9,7 +12,6 @@ class one extends StatefulWidget {
 }
 
 class _oneState extends State<one> {
-  @override
   List<ven> listVendors = [
     ven(
         image: 'assets/images/photo_2024-06-09_23-24-08 (2).jpg',
@@ -45,11 +47,12 @@ class _oneState extends State<one> {
         title: 'Bridal makup,family makup'),
   ];
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white70,
+        backgroundColor: color4,
         title: Text(
           'Vendors',
           style: TextStyle(color: Colors.black),
@@ -84,7 +87,7 @@ Widget Vendors({
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
             blurRadius: 3,
           )
         ],
@@ -95,12 +98,12 @@ Widget Vendors({
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15),
               ),
-              image: new DecorationImage(
-                image: new AssetImage("$imagenum"),
+              image: DecorationImage(
+                image: AssetImage(imagenum),
                 fit: BoxFit.fill,
               ),
             ),
@@ -113,11 +116,12 @@ Widget Vendors({
               children: [
                 Text(
                   text,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 24),
                 ),
                 Text(
                   title,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: const TextStyle(color: Colors.grey, fontSize: 16),
                 )
               ],
             ),

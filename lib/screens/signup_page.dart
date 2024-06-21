@@ -1,5 +1,6 @@
+// ignore_for_file: camel_case_types, use_super_parameters, prefer_const_constructors_in_immutables, use_build_context_synchronously
+
 import 'package:chic_events/const.dart';
-import 'package:chic_events/main.dart';
 import 'package:chic_events/screens/home.dart';
 import 'package:chic_events/widgets/button.dart';
 import 'package:chic_events/widgets/textfield.dart';
@@ -158,7 +159,7 @@ class _signupagState extends State<signupag> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 92,
                 ),
                 Image.asset(
