@@ -1,9 +1,10 @@
+// ignore_for_file: camel_case_types
+
 import 'package:chic_events/const.dart';
 import 'package:chic_events/screens/home.dart';
 import 'package:chic_events/screens/one.dart';
 import 'package:chic_events/screens/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class navbar extends StatefulWidget {
   const navbar({super.key});
