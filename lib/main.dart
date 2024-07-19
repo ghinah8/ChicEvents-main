@@ -1,22 +1,35 @@
 // ignore_for_file: use_super_parameters
 
 import 'package:chic_events/firebase_options.dart';
-import 'package:chic_events/screens/home.dart';
-import 'package:chic_events/screens/navbar.dart';
-
-import 'package:chic_events/screens/one.dart';
+import 'package:chic_events/screens/auth/signin_page.dart';
+import 'package:chic_events/screens/auth/signup_page.dart';
+import 'package:chic_events/screens/home/presentation/home.dart';
+import 'package:chic_events/screens/home/presentation/navbar.dart';
 import 'package:chic_events/screens/profile.dart';
-import 'package:chic_events/screens/signin_page.dart';
-import 'package:chic_events/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'screens/home/bloc/home_bloc.dart';
+import 'screens/vendors/bloc/vendors_bloc.dart';
+import 'screens/vendors/presentation/one.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(Checevents());
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => HomeBloc(),
+      ),
+      BlocProvider(
+        create: (context) => VendorsBloc(),
+      ),
+    ],
+    child: const Checevents(),
+  ));
 }
 
 class GetStart1 extends StatelessWidget {
@@ -37,18 +50,18 @@ class Checevents extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        signinpag.id: (context) => signinpag(),
+        signinpag.id: (context) => const signinpag(),
         signupag.id: (context) => signupag(),
         Myprofile.id: (context) => const Myprofile(),
         EditProfile.id1: (context) => const EditProfile(),
         support.id3: (context) => const support(),
         Payment.id2: (context) => Payment(),
         HomePage.id: (context) => HomePage(),
-        one.id: (context) => const one(),
+        One.id: (context) => const One(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'signinpag',
-      home: navbar(),
+      home: const navbar(),
     );
   }
 }

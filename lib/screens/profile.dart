@@ -1,13 +1,11 @@
 // ignore_for_file: override_on_non_overriding_member, must_be_immutable, sort_child_properties_last, camel_case_types, prefer_const_constructors_in_immutables
 
 import 'package:chic_events/const.dart';
-import 'package:chic_events/screens/signin_page.dart';
-import 'package:chic_events/widgets/button.dart';
-import 'package:chic_events/widgets/textfield.dart';
+import 'package:chic_events/core/widgets/button.dart';
+import 'package:chic_events/core/widgets/textfield.dart';
+import 'package:chic_events/screens/auth/signin_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Myprofile extends StatefulWidget {
@@ -158,7 +156,7 @@ class _MyprofileState extends State<Myprofile> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                signinpag()),
+                                                const signinpag()),
                                         (route) => false);
                                   },
                                   child: const Text(

@@ -1,9 +1,8 @@
-import 'package:chic_events/screens/one.dart';
-
+import 'package:chic_events/core/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
-  final ElementVen det;
+  final PackageModel det;
 
   const Details({super.key, required this.det});
 
@@ -23,8 +22,8 @@ class _DetailsState extends State<Details> {
             SizedBox(
               width: double.infinity,
               height: 300,
-              child: Image.asset(
-                'assets/images/${widget.det.imageE}',
+              child: Image.network(
+                widget.det.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -66,7 +65,7 @@ class _DetailsState extends State<Details> {
           child: Row(
             children: [
               Text(
-                widget.det.textE,
+                widget.det.name,
                 style: const TextStyle(
                     color: Colors.red,
                     fontSize: 32,
@@ -90,7 +89,7 @@ class _DetailsState extends State<Details> {
                 width: 6,
               ),
               Text(
-                widget.det.rate,
+                widget.det.rate.toString(),
                 style: const TextStyle(fontSize: 18, color: Colors.black54),
               ),
               const SizedBox(
@@ -105,7 +104,7 @@ class _DetailsState extends State<Details> {
                 width: 6,
               ),
               Text(
-                widget.det.size,
+                widget.det.capacity.toString(),
                 style: const TextStyle(fontSize: 18, color: Colors.black54),
               ),
               const SizedBox(
@@ -167,7 +166,7 @@ class _DetailsState extends State<Details> {
                 width: 6,
               ),
               Text(
-                widget.det.location,
+                widget.det.name,
                 style: const TextStyle(fontSize: 18, color: Colors.black54),
               )
             ],
@@ -197,7 +196,7 @@ class _DetailsState extends State<Details> {
                 ),
               ),
               Text(
-                widget.det.about,
+                widget.det.name,
                 style: const TextStyle(color: Colors.black54, fontSize: 16),
               )
             ],
@@ -227,7 +226,7 @@ class _DetailsState extends State<Details> {
                 ),
               ),
               Text(
-                widget.det.price,
+                widget.det.price.toString(),
                 style: const TextStyle(color: Colors.red, fontSize: 16),
               )
             ],

@@ -2,7 +2,7 @@
 
 import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
-import 'package:chic_events/screens/signin_page.dart';
+import 'package:chic_events/screens/auth/signin_page.dart';
 
 class onboarding_screen extends StatefulWidget {
   const onboarding_screen({super.key});

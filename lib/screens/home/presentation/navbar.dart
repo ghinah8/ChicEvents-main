@@ -1,9 +1,9 @@
 // ignore_for_file: camel_case_types
 
 import 'package:chic_events/const.dart';
-import 'package:chic_events/screens/home.dart';
-import 'package:chic_events/screens/one.dart';
+import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:chic_events/screens/profile.dart';
+import 'package:chic_events/screens/vendors/presentation/one.dart';
 import 'package:flutter/material.dart';
 
 class navbar extends StatefulWidget {
@@ -49,7 +49,7 @@ class _navbarState extends State<navbar> {
           ),
         ],
       ),
-      body: <Widget>[HomePage(), const one(), const Myprofile()][currentpage],
+      body: <Widget>[HomePage(), const One(), const Myprofile()][currentpage],
     );
   }
 }

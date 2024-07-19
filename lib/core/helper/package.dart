@@ -3,10 +3,10 @@
 import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
-class package extends StatelessWidget {
-  package(
+class Package extends StatelessWidget {
+  Package(
       {required this.name,
-      @required this.guest,
+      required this.guest,
       required this.photo,
       required this.price});
   String? name;
@@ -32,9 +32,13 @@ class package extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            photo!,
-            fit: BoxFit.cover,
+          SizedBox(
+            width: double.infinity,
+            height: 120,
+            child: Image.network(
+              photo!,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(
             height: 8,

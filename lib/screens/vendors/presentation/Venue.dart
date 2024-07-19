@@ -1,9 +1,15 @@
+import 'package:chic_events/core/firestore/status.dart';
+import 'package:chic_events/core/models/category_model.dart';
+import 'package:chic_events/core/models/product_model.dart';
 import 'package:chic_events/screens/details.dart';
-import 'package:chic_events/screens/one.dart';
+import 'package:chic_events/screens/home/presentation/home.dart';
+import 'package:chic_events/screens/vendors/bloc/vendors_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Venue extends StatefulWidget {
-  final Ven venE;
+  final CategoryModel venE;
 
   const Venue({super.key, required this.venE});
 
@@ -13,16 +19,23 @@ class Venue extends StatefulWidget {
 
 class _VenueState extends State<Venue> {
   @override
+  void initState() {
+    context
+        .read<VendorsBloc>()
+        .add(IndexProductsByCategory(categoryId: widget.venE.id));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(
           color: Colors.black, //change your color here
         ),
         title: Text(
-          widget.venE.text,
+          widget.venE.name,
           style: const TextStyle(fontSize: 24, color: Colors.black),
         ),
       ),
@@ -63,14 +76,48 @@ class _VenueState extends State<Venue> {
                 ),
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 750,
-              child: ListView.builder(
-                itemBuilder: (context, index) =>
-                    CardElement(element: widget.venE.listElement[index]),
-                itemCount: widget.venE.listElement.length,
-              ),
+            BlocBuilder<VendorsBloc, VendorsState>(
+              builder: (context, state) {
+                return SizedBox(
+                  width: double.infinity,
+                  height: 750,
+                  child: switch (state.indexProductsStatus) {
+                    RequestStatus.failed => MainErrorWidget(onPressed: () {
+                        context.read<VendorsBloc>().add(IndexProductsByCategory(
+                            categoryId: widget.venE.id));
+                      }),
+                    RequestStatus.success => switch (state.products.length) {
+                        > 0 => ListView.builder(
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child:
+                                  CardElement(element: state.products[index]),
+                            ),
+                            itemCount: state.products.length,
+                          ),
+                        _ => const Center(
+                            child: Text('There Is No Items Yet'),
+                          )
+                      },
+                    RequestStatus.loading => ListView.builder(
+                        itemBuilder: (context, index) => Shimmer.fromColors(
+                          baseColor: Colors.grey.shade400,
+                          highlightColor: Colors.grey.shade200,
+                          child: CardElement(
+                              element: PackageModel(
+                                  id: '',
+                                  image: '',
+                                  price: 0,
+                                  rate: 0,
+                                  capacity: 0,
+                                  name: '')),
+                        ),
+                        itemCount: 5,
+                      ),
+                    _ => const SizedBox(),
+                  },
+                );
+              },
             ),
           ],
         ),
@@ -80,7 +127,7 @@ class _VenueState extends State<Venue> {
 }
 
 class CardElement extends StatelessWidget {
-  final ElementVen element;
+  final PackageModel element;
 
   const CardElement({super.key, required this.element});
 
@@ -124,8 +171,8 @@ class CardElement extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                              image: AssetImage(
-                                'assets/images/${element.imageE}',
+                              image: NetworkImage(
+                                element.image,
                               ),
                               fit: BoxFit.fill)),
                     ),
@@ -143,7 +190,7 @@ class CardElement extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      element.textE,
+                      element.name,
                       style: const TextStyle(
                           fontSize: 24, fontWeight: FontWeight.bold),
                     ),
@@ -167,7 +214,7 @@ class CardElement extends StatelessWidget {
                             width: 6,
                           ),
                           Text(
-                            element.rate,
+                            element.rate.toString(),
                             style: const TextStyle(
                                 fontSize: 18, color: Colors.black54),
                           ),
@@ -186,7 +233,7 @@ class CardElement extends StatelessWidget {
                               width: 6,
                             ),
                             Text(
-                              element.size,
+                              element.capacity.toString(),
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.black54),
                             ),
@@ -246,7 +293,7 @@ class CardElement extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      element.price,
+                      element.price.toString(),
                       style: const TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,

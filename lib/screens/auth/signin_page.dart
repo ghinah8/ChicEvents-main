@@ -1,19 +1,17 @@
 // ignore_for_file: camel_case_types, use_super_parameters, use_build_context_synchronously
 
 import 'package:chic_events/const.dart';
-import 'package:chic_events/helper/showsnackbar.dart';
-import 'package:chic_events/screens/home.dart';
-import 'package:chic_events/widgets/button.dart';
-import 'package:chic_events/widgets/textfield.dart';
+import 'package:chic_events/core/helper/showsnackbar.dart';
+import 'package:chic_events/core/widgets/button.dart';
+import 'package:chic_events/core/widgets/textfield.dart';
+import 'package:chic_events/screens/auth/signup_page.dart';
+import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import 'package:chic_events/screens/signup_page.dart';
-
 class signinpag extends StatefulWidget {
-  signinpag({Key? key}) : super(key: key);
+  const signinpag({Key? key}) : super(key: key);
   static String id = 'signinpage';
 
   @override
