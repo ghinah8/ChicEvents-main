@@ -70,7 +70,7 @@ class _signinpagState extends State<signinpag> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: textfield(
+                  child: TextFieldForm(
                     onchange: (data) {
                       email = data;
                     },
@@ -82,7 +82,7 @@ class _signinpagState extends State<signinpag> {
                   padding: const EdgeInsets.only(top: 16),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: textfield(
+                    child: TextFieldForm(
                       onchange: (data) {
                         password = data;
                       },

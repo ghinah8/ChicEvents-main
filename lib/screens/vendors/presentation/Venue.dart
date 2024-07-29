@@ -1,6 +1,7 @@
 import 'package:chic_events/core/firestore/status.dart';
 import 'package:chic_events/core/models/category_model.dart';
 import 'package:chic_events/core/models/product_model.dart';
+import 'package:chic_events/screens/cart/presentation/cubit/cart_cubit.dart';
 import 'package:chic_events/screens/details.dart';
 import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:chic_events/screens/vendors/bloc/vendors_bloc.dart';
@@ -106,7 +107,8 @@ class _VenueState extends State<Venue> {
                           child: CardElement(
                               element: PackageModel(
                                   id: '',
-                                  image: '',
+                                  image:
+                                      'https://firebasestorage.googleapis.com/v0/b/chec-events-584ad.appspot.com/o/decor.jpeg?alt=media&token=d59ac4cc-fab9-4d72-bb03-880a6d3c7dbe',
                                   price: 0,
                                   rate: 0,
                                   capacity: 0,
@@ -179,6 +181,26 @@ class CardElement extends StatelessWidget {
                     Positioned(
                         top: 10,
                         right: 10,
+                        child: BlocBuilder<CartCubit, CartState>(
+                          builder: (context, cartState) {
+                            return InkWell(
+                                onTap: () {
+                                  cartState.products.contains(element)
+                                      ? context
+                                          .read<CartCubit>()
+                                          .removeFromCart(element)
+                                      : context
+                                          .read<CartCubit>()
+                                          .addToCart(element);
+                                },
+                                child: cartState.products.contains(element)
+                                    ? const Icon(Icons.remove)
+                                    : const Icon(Icons.add));
+                          },
+                        )),
+                    Positioned(
+                        top: 10,
+                        right: 40,
                         child: InkWell(
                             onTap: () {},
                             child: const Icon(Icons.favorite_border)))

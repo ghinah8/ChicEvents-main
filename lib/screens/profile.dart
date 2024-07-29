@@ -253,7 +253,7 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              textfield(
+              TextFieldForm(
                 lab: '',
               ),
               const SizedBox(
@@ -269,7 +269,7 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              textfield(
+              TextFieldForm(
                 lab: '',
               ),
               const SizedBox(
@@ -285,7 +285,7 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              textfield(
+              TextFieldForm(
                 lab: '',
               ),
               const SizedBox(
@@ -349,7 +349,7 @@ class support extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  textfield(
+                  TextFieldForm(
                     lab: '',
                     hint: 'Enter your name',
                   ),
@@ -366,7 +366,7 @@ class support extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  textfield(
+                  TextFieldForm(
                     lab: '',
                     hint: 'Enter your Email',
                   ),
@@ -383,7 +383,7 @@ class support extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  textfield(
+                  TextFieldForm(
                     lab: '',
                     hint: 'Write message here',
                   ),

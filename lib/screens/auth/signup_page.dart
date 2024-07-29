@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, use_super_parameters, prefer_const_constructors_in_immutables, use_build_context_synchronously
 
 import 'package:chic_events/const.dart';
+import 'package:chic_events/core/firestore/firestore_database.dart';
 import 'package:chic_events/core/helper/showsnackbar.dart';
 import 'package:chic_events/core/widgets/button.dart';
 import 'package:chic_events/core/widgets/textfield.dart';
@@ -72,7 +73,7 @@ class _signupagState extends State<signupag> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: textfield(
+                  child: TextFieldForm(
                     onchange: (data) {
                       email = data;
                     },
@@ -85,7 +86,7 @@ class _signupagState extends State<signupag> {
                   padding: const EdgeInsets.only(top: 16),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: textfield(
+                    child: TextFieldForm(
                       onchange: (data) {
                         password = data;
                       },
@@ -97,7 +98,7 @@ class _signupagState extends State<signupag> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                  child: textfield(
+                  child: TextFieldForm(
                     onchange: (data) {
                       firstname = data;
                     },
@@ -172,6 +173,12 @@ class _signupagState extends State<signupag> {
   Future<void> sginupuser() async {
     // ignore: unused_local_variable
     UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
+        .createUserWithEmailAndPassword(email: email!, password: password!)
+        .then((v) async {
+      if (v.user != null) {
+        await FirestoreDatabase().setProfile(email!, firstname!);
+      }
+      return v;
+    });
   }
 }

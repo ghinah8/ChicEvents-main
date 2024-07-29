@@ -51,7 +51,11 @@ class _OneState extends State<One> {
                         highlightColor: Colors.grey.shade200,
                         child: Vendors(
                           ven: CategoryModel(
-                              id: '', image: '', name: '', description: ''),
+                              id: '',
+                              image:
+                                  'https://firebasestorage.googleapis.com/v0/b/chec-events-584ad.appspot.com/o/decor.jpeg?alt=media&token=d59ac4cc-fab9-4d72-bb03-880a6d3c7dbe',
+                              name: '',
+                              description: ''),
                         ),
                       )),
               RequestStatus.success => ListView.builder(

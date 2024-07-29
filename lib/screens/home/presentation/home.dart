@@ -105,7 +105,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                       highlightColor:
                                                           Colors.grey.shade200,
                                                       child: help(
-                                                          image: '', title: ''),
+                                                          image:
+                                                              'https://firebasestorage.googleapis.com/v0/b/chec-events-584ad.appspot.com/o/decor.jpeg?alt=media&token=d59ac4cc-fab9-4d72-bb03-880a6d3c7dbe',
+                                                          title: ''),
                                                     ),
                                                   );
                                                 }),
@@ -182,7 +184,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                         child: Package(
                                                             name: '',
                                                             guest: '',
-                                                            photo: '',
+                                                            photo:
+                                                                'https://firebasestorage.googleapis.com/v0/b/chec-events-584ad.appspot.com/o/decor.jpeg?alt=media&token=d59ac4cc-fab9-4d72-bb03-880a6d3c7dbe',
                                                             price: '')),
                                                   );
                                                 }),

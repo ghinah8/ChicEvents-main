@@ -6,6 +6,8 @@ import 'package:chic_events/screens/profile.dart';
 import 'package:chic_events/screens/vendors/presentation/one.dart';
 import 'package:flutter/material.dart';
 
+import '../../cart/presentation/pages/cart_screen.dart';
+
 class navbar extends StatefulWidget {
   const navbar({super.key});
 
@@ -49,7 +51,12 @@ class _navbarState extends State<navbar> {
           ),
         ],
       ),
-      body: <Widget>[HomePage(), const One(), const Myprofile()][currentpage],
+      body: <Widget>[
+        HomePage(),
+        const One(),
+        const CartScreen(),
+        const Myprofile()
+      ][currentpage],
     );
   }
 }

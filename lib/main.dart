@@ -3,6 +3,7 @@
 import 'package:chic_events/firebase_options.dart';
 import 'package:chic_events/screens/auth/signin_page.dart';
 import 'package:chic_events/screens/auth/signup_page.dart';
+import 'package:chic_events/screens/cart/presentation/cubit/cart_cubit.dart';
 import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:chic_events/screens/home/presentation/navbar.dart';
 import 'package:chic_events/screens/profile.dart';
@@ -26,6 +27,9 @@ void main() async {
       ),
       BlocProvider(
         create: (context) => VendorsBloc(),
+      ),
+      BlocProvider(
+        create: (context) => CartCubit(),
       ),
     ],
     child: const Checevents(),

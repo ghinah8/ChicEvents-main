@@ -3,6 +3,7 @@ import 'package:chic_events/core/models/category_model.dart';
 import 'package:chic_events/core/models/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreDatabase with HandlingError {
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -15,6 +16,16 @@ class FirestoreDatabase with HandlingError {
         return CategoryModel.fromFirestore(result.docs[index]);
       });
       return Right(list);
+    });
+  }
+
+  Future<Either<String, void>> setProfile(String email, String userName) async {
+    return handleError(tryCall: () async {
+      db
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set({'email': email, 'userName': userName});
+      return Right(Future.value());
     });
   }
 

@@ -2,12 +2,12 @@ import 'package:chic_events/core/models/category_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PackageModel {
-  final String id;
-  final String image;
-  final num price;
-  final num rate;
-  final num capacity;
-  final String name;
+  final dynamic id;
+  final dynamic image;
+  final dynamic price;
+  final dynamic rate;
+  final dynamic capacity;
+  final dynamic name;
   final CategoryModel? category;
   PackageModel({
     required this.id,

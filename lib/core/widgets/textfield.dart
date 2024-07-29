@@ -4,13 +4,14 @@ import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class textfield extends StatelessWidget {
-  textfield(
+class TextFieldForm extends StatelessWidget {
+  TextFieldForm(
       {this.onchange, this.hint, @required this.lab, this.obscuretext = false});
   String? hint;
   String? lab;
   Function(String)? onchange;
   bool? obscuretext;
+  TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
