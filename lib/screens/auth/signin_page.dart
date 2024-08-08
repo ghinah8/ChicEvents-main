@@ -96,7 +96,7 @@ class _signinpagState extends State<signinpag> {
                   padding: const EdgeInsets.only(top: 80),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70),
-                    child: button(
+                    child: ButtonOne(
                         ontap: () async {
                           if (formkey.currentState!.validate()) {
                             isloading = true;

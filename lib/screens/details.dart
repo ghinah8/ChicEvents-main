@@ -1,5 +1,8 @@
+import 'package:chic_events/core/helper/toaster.dart';
 import 'package:chic_events/core/models/product_model.dart';
+import 'package:chic_events/screens/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Details extends StatefulWidget {
   final PackageModel det;
@@ -23,7 +26,7 @@ class _DetailsState extends State<Details> {
               width: double.infinity,
               height: 300,
               child: Image.network(
-                widget.det.image,
+                widget.det.image ?? '',
                 fit: BoxFit.fill,
               ),
             ),
@@ -65,7 +68,7 @@ class _DetailsState extends State<Details> {
           child: Row(
             children: [
               Text(
-                widget.det.name,
+                widget.det.name ?? '',
                 style: const TextStyle(
                     color: Colors.red,
                     fontSize: 32,
@@ -78,80 +81,112 @@ class _DetailsState extends State<Details> {
           padding: const EdgeInsets.only(
             left: 12.0,
           ),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.star_border_outlined,
-                size: 24,
-                color: Colors.black54,
-              ),
-              const SizedBox(
-                width: 6,
-              ),
-              Text(
-                widget.det.rate.toString(),
-                style: const TextStyle(fontSize: 18, color: Colors.black54),
-              ),
-              const SizedBox(
-                width: 24,
-              ),
-              const Icon(
-                Icons.person_2_outlined,
-                size: 24,
-                color: Colors.black54,
-              ),
-              const SizedBox(
-                width: 6,
-              ),
-              Text(
-                widget.det.capacity.toString(),
-                style: const TextStyle(fontSize: 18, color: Colors.black54),
-              ),
-              const SizedBox(
-                width: 100,
-              ),
-              Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      spreadRadius: 2,
-                      blurRadius: 2,
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.star_border_outlined,
+                  size: 24,
+                  color: Colors.black54,
+                ),
+                const SizedBox(
+                  width: 6,
+                ),
+                Text(
+                  widget.det.rate.toString(),
+                  style: const TextStyle(fontSize: 18, color: Colors.black54),
+                ),
+                const SizedBox(
+                  width: 24,
+                ),
+                const Icon(
+                  Icons.person_2_outlined,
+                  size: 24,
+                  color: Colors.black54,
+                ),
+                const SizedBox(
+                  width: 6,
+                ),
+                Text(
+                  widget.det.capacity.toString(),
+                  style: const TextStyle(fontSize: 18, color: Colors.black54),
+                ),
+                const SizedBox(
+                  width: 100,
+                ),
+                Container(
+                  width: 55,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.messenger_outline,
+                    color: Colors.red,
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  width: 55,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.phone_outlined,
+                    color: Colors.red,
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                InkWell(
+                  onTap: () {
+                    context.read<CartCubit>().addToCart(widget.det);
+
+                    Toaster.showToast('Added To Cart');
+                  },
+                  child: Container(
+                    width: 55,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 2,
+                          blurRadius: 2,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.messenger_outline,
-                  color: Colors.red,
-                ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      spreadRadius: 2,
-                      blurRadius: 2,
+                    child: const Icon(
+                      Icons.add_box_outlined,
+                      color: Colors.red,
                     ),
-                  ],
+                  ),
                 ),
-                child: const Icon(
-                  Icons.phone_outlined,
-                  color: Colors.red,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Padding(
@@ -166,7 +201,7 @@ class _DetailsState extends State<Details> {
                 width: 6,
               ),
               Text(
-                widget.det.name,
+                widget.det.name ?? '',
                 style: const TextStyle(fontSize: 18, color: Colors.black54),
               )
             ],
@@ -196,7 +231,7 @@ class _DetailsState extends State<Details> {
                 ),
               ),
               Text(
-                widget.det.name,
+                widget.det.name ?? '',
                 style: const TextStyle(color: Colors.black54, fontSize: 16),
               )
             ],

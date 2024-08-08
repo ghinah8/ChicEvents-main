@@ -1,9 +1,12 @@
 // ignore_for_file: override_on_non_overriding_member, must_be_immutable, sort_child_properties_last, camel_case_types, prefer_const_constructors_in_immutables
 
 import 'package:chic_events/const.dart';
+import 'package:chic_events/core/firestore/firestore_database.dart';
+import 'package:chic_events/core/helper/toaster.dart';
 import 'package:chic_events/core/widgets/button.dart';
 import 'package:chic_events/core/widgets/textfield.dart';
 import 'package:chic_events/screens/auth/signin_page.dart';
+import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -50,39 +53,14 @@ class _MyprofileState extends State<Myprofile> {
                         const EdgeInsets.only(top: 140, left: 20, right: 10),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.person),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    EditProfile.id1,
-                                  );
-                                },
-                                child: const Text(
-                                  'Edit Profile',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            const SizedBox(
-                              width: 170,
-                            ),
-                            const Icon(FontAwesomeIcons.angleRight)
-                          ],
+                        const SizedBox(
+                          height: 50,
                         ),
-                        const Divider(
-                          color: Color.fromARGB(255, 202, 202, 202),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
                           child: Row(
                             children: [
-                              const Icon(FontAwesomeIcons.creditCard),
+                              const Icon(Icons.person),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -90,17 +68,50 @@ class _MyprofileState extends State<Myprofile> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                       context,
-                                      Payment.id2,
+                                      EditProfile.id1,
                                     );
                                   },
                                   child: const Text(
-                                    'Payment Types',
+                                    'Edit Profile',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   )),
                               const SizedBox(
-                                width: 129,
+                                width: 170,
+                              ),
+                              const Icon(FontAwesomeIcons.angleRight)
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          color: Color.fromARGB(255, 202, 202, 202),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(FontAwesomeIcons.creditCard),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          MYOrders.id2,
+                                        );
+                                      },
+                                      child: const Text(
+                                        'My Orders',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ],
                               ),
                               const Icon(FontAwesomeIcons.angleRight)
                             ],
@@ -179,34 +190,49 @@ class _MyprofileState extends State<Myprofile> {
               ),
             ),
           ),
-          const Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(
-                        'assets/images/profile-circle-icon-2048x2048-cqe5466q.png'),
-                    maxRadius: 65,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Ghina Habib',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                Text(
-                  '099435646',
-                  style: TextStyle(fontSize: 18, color: color3),
-                )
-              ],
-            ),
+          Center(
+            child: FutureBuilder(
+                future: FirestoreDatabase().getProfile(),
+                builder: (context, s) {
+                  if (s.connectionState == ConnectionState.active) {
+                    return const Center();
+                  } else if (s.hasData) {
+                    return s.data!.fold((l) {
+                      return MainErrorWidget(onPressed: () {
+                        setState(() {});
+                      });
+                    }, (r) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  'assets/images/profile-circle-icon-2048x2048-cqe5466q.png'),
+                              maxRadius: 65,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              r!['userName'].toString(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            r['email'] ?? '',
+                            style: const TextStyle(fontSize: 18, color: color3),
+                          )
+                        ],
+                      );
+                    });
+                  } else
+                    return const Center();
+                }),
           ),
         ],
       ),
@@ -215,8 +241,10 @@ class _MyprofileState extends State<Myprofile> {
 }
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
-
+  EditProfile({super.key});
+  String name = '';
+  String phone = '';
+  String email = '';
   static String id1 = 'editprofile';
 
   @override
@@ -291,7 +319,7 @@ class EditProfile extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              button(name: 'Save')
+              ButtonOne(name: 'Save')
             ],
           ),
         ]),
@@ -301,9 +329,12 @@ class EditProfile extends StatelessWidget {
 }
 
 class support extends StatelessWidget {
-  const support({super.key});
+  support({super.key});
 
   static String id3 = 'support';
+  String name = '';
+  String email = '';
+  String message = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -352,6 +383,9 @@ class support extends StatelessWidget {
                   TextFieldForm(
                     lab: '',
                     hint: 'Enter your name',
+                    onchange: (s) {
+                      name = s;
+                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -368,6 +402,9 @@ class support extends StatelessWidget {
                   ),
                   TextFieldForm(
                     lab: '',
+                    onchange: (s) {
+                      email = s;
+                    },
                     hint: 'Enter your Email',
                   ),
                   const SizedBox(
@@ -385,12 +422,29 @@ class support extends StatelessWidget {
                   ),
                   TextFieldForm(
                     lab: '',
+                    onchange: (s) {
+                      message = s;
+                    },
                     hint: 'Write message here',
                   ),
                   const SizedBox(
                     height: 50,
                   ),
-                  button(name: 'Send')
+                  ButtonOne(
+                    name: 'Send',
+                    ontap: () async {
+                      Toaster.showLoading();
+                      final result = await FirestoreDatabase()
+                          .sendFeedBack(name, email, message);
+                      result.fold((l) {
+                        Toaster.showToast(l);
+                      }, (r) {
+                        Navigator.pop(context);
+                      });
+                      Toaster.showToast('We Appreciate You For Your Feedback');
+                      Toaster.closeLoading();
+                    },
+                  )
                 ],
               ),
             ),
@@ -401,70 +455,68 @@ class support extends StatelessWidget {
   }
 }
 
-class Payment extends StatefulWidget {
-  Payment({super.key});
+class MYOrders extends StatefulWidget {
+  MYOrders({super.key});
   static String id2 = 'payment';
 
   @override
-  State<Payment> createState() => _PaymentState();
+  State<MYOrders> createState() => _MYOrdersState();
 }
 
-class _PaymentState extends State<Payment> {
-  bool? ischechecked = false;
-  bool? ischechecked1 = false;
+class _MYOrdersState extends State<MYOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Payment Selection'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Credit Card',
-                    style: TextStyle(fontSize: 20, color: color2),
-                  ),
-                  Checkbox(
-                      value: ischechecked,
-                      activeColor: color2,
-                      onChanged: (data) {
-                        setState(() {
-                          ischechecked = data;
-                        });
-                      })
-                ],
-              ),
-              const Divider(),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Cash Syriatel',
-                    style: TextStyle(fontSize: 20, color: color2),
-                  ),
-                  Checkbox(
-                      value: ischechecked1,
-                      activeColor: color2,
-                      onChanged: (data) {
-                        setState(() {
-                          ischechecked1 = data;
-                        });
-                      })
-                ],
-              ),
-            ],
-          ),
-        ));
+        body: FutureBuilder(
+            future: FirestoreDatabase().getOrders(),
+            builder: (context, s) {
+              if (!s.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return s.data!.fold((l) {
+                  Toaster.showToast(l);
+                  return Center(
+                    child: MainErrorWidget(onPressed: () {
+                      setState(() {});
+                    }),
+                  );
+                }, (r) {
+                  return ListView.builder(
+                      itemCount: r.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ExpansionTile(
+                            collapsedBackgroundColor: r[index].status == 1
+                                ? null
+                                : r[index].status == 2
+                                    ? Colors.greenAccent
+                                    : Colors.redAccent,
+                            title: Text(
+                              '${r[index].total}   Num Of Products ${r[index].products?.length} ',
+                            ),
+                            children: [
+                              const Text('Products'),
+                              Wrap(
+                                children: r[index].products!.map((e) {
+                                  return Card(
+                                    child: Text(e.name!),
+                                  );
+                                }).toList(),
+                              ),
+                              const Text('Date'),
+                              Text(r[index].date.toDate().toString())
+                            ],
+                          ),
+                        );
+                      });
+                });
+              }
+            }));
   }
 }

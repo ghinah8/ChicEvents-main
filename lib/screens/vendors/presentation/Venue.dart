@@ -174,7 +174,7 @@ class CardElement extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
                               image: NetworkImage(
-                                element.image,
+                                element.image ?? '',
                               ),
                               fit: BoxFit.fill)),
                     ),
@@ -203,7 +203,7 @@ class CardElement extends StatelessWidget {
                         right: 40,
                         child: InkWell(
                             onTap: () {},
-                            child: const Icon(Icons.favorite_border)))
+                            child: const Icon(Icons.favorite_border))),
                   ],
                 ),
               ),
@@ -212,7 +212,7 @@ class CardElement extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      element.name,
+                      element.name ?? '',
                       style: const TextStyle(
                           fontSize: 24, fontWeight: FontWeight.bold),
                     ),

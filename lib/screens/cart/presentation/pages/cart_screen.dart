@@ -17,7 +17,24 @@ class _CartScreenState extends State<CartScreen> {
         return Scaffold(
           floatingActionButton: state.products.isNotEmpty
               ? FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    showDatePicker(
+                            context: context,
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.utc(2025))
+                        .then((e) {
+                      if (e != null) {
+                        showTimePicker(
+                                context: context, initialTime: TimeOfDay.now())
+                            .then((r) {
+                          if (r != null) {
+                            context.read<CartCubit>().sendEvent(DateTime(
+                                e.year, e.month, e.day, r.hour, r.minute));
+                          }
+                        });
+                      }
+                    });
+                  },
                   child: const Icon(Icons.send),
                 )
               : null,
@@ -42,7 +59,7 @@ class _CartScreenState extends State<CartScreen> {
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle),
                                   child: FadeInImage.assetNetwork(
-                                    image: state.products[index].image,
+                                    image: state.products[index].image ?? '',
                                     placeholder: 'assets/images/11.jpg',
                                     imageErrorBuilder:
                                         (context, error, stackTrace) =>
@@ -57,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
                                     fit: BoxFit.fill,
                                   ),
                                 ),
-                                title: Text(state.products[index].name),
+                                title: Text(state.products[index].name ?? ''),
                                 subtitle: Text(
                                     state.products[index].price.toString()),
                                 trailing: OutlinedButton(

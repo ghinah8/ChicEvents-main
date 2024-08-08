@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors
 
+import 'package:chic_events/core/firestore/firestore_database.dart';
 import 'package:chic_events/core/firestore/status.dart';
 import 'package:chic_events/core/helper/package.dart';
 import 'package:flutter/material.dart';
@@ -365,7 +366,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              FirestoreDatabase().getOrders();
+            },
             tooltip: 'Create Event',
             child: const Icon(Icons.add),
           ),

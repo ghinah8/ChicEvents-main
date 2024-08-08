@@ -2,8 +2,8 @@ import 'package:chic_events/const.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class button extends StatelessWidget {
-  button({this.ontap, required this.name});
+class ButtonOne extends StatelessWidget {
+  ButtonOne({super.key, this.ontap, required this.name});
   String? name;
   VoidCallback? ontap;
   @override

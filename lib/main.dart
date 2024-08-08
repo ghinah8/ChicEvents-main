@@ -1,12 +1,13 @@
 // ignore_for_file: use_super_parameters
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:chic_events/firebase_options.dart';
 import 'package:chic_events/screens/auth/signin_page.dart';
 import 'package:chic_events/screens/auth/signup_page.dart';
 import 'package:chic_events/screens/cart/presentation/cubit/cart_cubit.dart';
 import 'package:chic_events/screens/home/presentation/home.dart';
 import 'package:chic_events/screens/home/presentation/navbar.dart';
-import 'package:chic_events/screens/profile.dart';
+import 'package:chic_events/screens/profile/presentation/pages/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,15 +58,17 @@ class Checevents extends StatelessWidget {
         signinpag.id: (context) => const signinpag(),
         signupag.id: (context) => signupag(),
         Myprofile.id: (context) => const Myprofile(),
-        EditProfile.id1: (context) => const EditProfile(),
-        support.id3: (context) => const support(),
-        Payment.id2: (context) => Payment(),
-        HomePage.id: (context) => HomePage(),
+        EditProfile.id1: (context) => EditProfile(),
+        support.id3: (context) => support(),
+        MYOrders.id2: (context) => MYOrders(),
+        HomePage.id: (context) => const navbar(),
         One.id: (context) => const One(),
       },
       debugShowCheckedModeBanner: false,
+      builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()],
       initialRoute: 'signinpag',
-      home: const navbar(),
+      home: const signinpag(),
     );
   }
 }

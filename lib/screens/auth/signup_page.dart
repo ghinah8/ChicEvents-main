@@ -110,7 +110,7 @@ class _signupagState extends State<signupag> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70),
-                    child: button(
+                    child: ButtonOne(
                         ontap: () async {
                           if (formkey.currentState!.validate()) {
                             isloading = true;
@@ -176,7 +176,8 @@ class _signupagState extends State<signupag> {
         .createUserWithEmailAndPassword(email: email!, password: password!)
         .then((v) async {
       if (v.user != null) {
-        await FirestoreDatabase().setProfile(email!, firstname!);
+        await FirestoreDatabase()
+            .setProfile(email!, firstname!, v.user?.phoneNumber ?? '');
       }
       return v;
     });

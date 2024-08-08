@@ -2,7 +2,7 @@
 
 import 'package:chic_events/const.dart';
 import 'package:chic_events/screens/home/presentation/home.dart';
-import 'package:chic_events/screens/profile.dart';
+import 'package:chic_events/screens/profile/presentation/pages/profile.dart';
 import 'package:chic_events/screens/vendors/presentation/one.dart';
 import 'package:flutter/material.dart';
 
