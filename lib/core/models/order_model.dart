@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class OrderModel {
   final Timestamp date;
   final List<PackageModel>? products;
-  final int total;
+  final num total;
   final DocumentReference? user;
   final int status;
 
