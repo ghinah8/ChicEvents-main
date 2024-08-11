@@ -116,7 +116,7 @@ class Vendors extends StatelessWidget {
                     bottomLeft: Radius.circular(15),
                   ),
                   image: DecorationImage(
-                    image: NetworkImage(ven.image),
+                    image: NetworkImage(ven.image ?? ''),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -128,14 +128,14 @@ class Vendors extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ven.name,
+                      ven.name ?? '',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                     Text(
-                      ven.description,
+                      ven.description ?? '',
                       style: const TextStyle(color: Colors.grey, fontSize: 16),
-                    )
+                    ),
                   ],
                 ),
               )

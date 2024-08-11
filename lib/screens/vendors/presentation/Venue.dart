@@ -23,7 +23,7 @@ class _VenueState extends State<Venue> {
   void initState() {
     context
         .read<VendorsBloc>()
-        .add(IndexProductsByCategory(categoryId: widget.venE.id));
+        .add(IndexProductsByCategory(categoryId: widget.venE.id ?? ''));
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _VenueState extends State<Venue> {
           color: Colors.black, //change your color here
         ),
         title: Text(
-          widget.venE.name,
+          widget.venE.name ?? '',
           style: const TextStyle(fontSize: 24, color: Colors.black),
         ),
       ),
@@ -85,7 +85,7 @@ class _VenueState extends State<Venue> {
                   child: switch (state.indexProductsStatus) {
                     RequestStatus.failed => MainErrorWidget(onPressed: () {
                         context.read<VendorsBloc>().add(IndexProductsByCategory(
-                            categoryId: widget.venE.id));
+                            categoryId: widget.venE.id ?? ''));
                       }),
                     RequestStatus.success => switch (state.products.length) {
                         > 0 => ListView.builder(
